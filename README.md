@@ -8,7 +8,7 @@ DocCenter is a small but very useful documentation center that allows you to pul
 ![Screenshot](/resources/images/screenshot.png "Screenshot")
 
 
-It shows an unobstrusive sidebar on left which allows you to switch documentation sites. The documentation is then loaded as an iframe in the mainarea.
+It shows an unobstrusive sidebar on left which allows you to switch documentation sites. The documentation is then loaded as an iframe in the main area.
 
 It also allows you to configure multiple channels for every documentation resource.
 The user can then switch between the channels and DocCenter remembers which channel was used on which resource and will use that channel on reload.
