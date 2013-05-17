@@ -4,6 +4,10 @@ DocCenter
 
 DocCenter is a small but very useful documentation center that allows you to pull in multiple documentation websites into a single interface.
 
+
+![Screenshot](/resources/images/screenshot.png "Screenshot")
+
+
 It shows an unobstrusive sidebar on left which allows you to switch documentation sites. The documentation is then loaded as an iframe in the mainarea.
 
 It also allows you to configure multiple channels for every documentation resource.
@@ -25,9 +29,6 @@ Howto setup
  3. (Optional) Add custom css to change look and feel.
  4. Load the directory and enjoy
 
-config.json
------------
-Here is a small explanation on what
 
 Howto contribute
 ----------------

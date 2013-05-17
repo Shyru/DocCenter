@@ -1,6 +1,9 @@
 {
-    "title":"MyDocs",
+    "title":"My Docs",
     "resources":[{
+        "name":"Welcome",
+        "url":"welcome.html"
+    },{
         "id":"jquery",
         "iconClass":"jquery",
         "name":"jQuery",
