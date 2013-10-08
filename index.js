@@ -60,22 +60,29 @@ $(document).ready(function(){
 
 
         //create the sidebar entry for the resource
-        $('#sidebar').append($('<a class="resource" id="resource_button_'+_resource.id+'" href="#'+_resource.name+'"><span class="'+_resource.iconClass+'" title="'+currentUrl+'">'+_resource.name+'</span><div class="'+channelClass+'" style="display:'+displayChannel+'">'+activeChannelName+'</div></a>').data("resource",_resource).click(function(_event){
-            console.log("clicked on "+_resource.name);
-            var resource=$(_event.target.parentNode).data("resource");
-            if ($(_event.target.parentNode).hasClass("active"))
-            { //we are already active, lets reload the iframe
-                $('#resource_'+resource.id+" iframe").attr("src",resource.url);
-            }
-            $('#sidebar a').removeClass("active");
-            $(_event.target.parentNode).addClass("active");
+        $('#sidebar').append($('<a class="resource" id="resource_button_'+_resource.id+'" href="#'+_resource.name+'"><span class="'+_resource.iconClass+'" title="'+currentUrl+'">'+_resource.name+'</span><div class="'+channelClass+'" style="display:'+displayChannel+'">'+activeChannelName+'</div></a>')
+                    .data("resource",_resource)
+                    .data("currentUrl",currentUrl)
+                    .click(function(_event){
+                        console.log("clicked on "+_resource.name);
+                        var resource=$(_event.target.parentNode).data("resource");
+
+                        if ($(_event.target.parentNode).hasClass("active"))
+                        { //we are already active, lets reload the iframe
+                            var currentUrl=$(_event.target.parentNode).data("currentUrl");
+                            var now=new Date();
+                            $('#resource_'+resource.id+" iframe").attr("src",currentUrl+"?cb="+now.getTime());
+                        }
+                        $('#sidebar a').removeClass("active");
+                        $(_event.target.parentNode).addClass("active");
 
 
 
-            //now show the right iframe
-            $('.resource-container').hide();
-            $('#resource_'+resource.id).show();
-        }));
+                        //now show the right iframe
+                        $('.resource-container').hide();
+                        $('#resource_'+resource.id).show();
+                    }
+        ));
 
         //attach the context menu if necessary
         if (_resource.channels)
@@ -95,14 +102,17 @@ $(document).ready(function(){
                                 if (menuItems.hasOwnProperty(menuItemName)) menuItems[menuItemName].icon="inactive";
                             }
                             menuItems[_key].icon="active";
-
+                            var buttonElement=$('#resource_button_'+_resource.id);
                             var channelElement=$('#resource_button_'+_resource.id+' div');
 
 
                             //update src of iframe to the new url of the channel
                             $('#resource_'+_resource.id+" iframe").attr("src",menuItems[_key].url);
                             //also update the title with the new url
-                            channelElement.attr("title",menuItems[_key].url);
+                            $('#resource_button_'+_resource.id+' span').attr("title",menuItems[_key].url);
+                            //also update the currentUrl data so that we can reload the correct url on re-click
+                            buttonElement.data("currentUrl",menuItems[_key].url);
+
 
                             if (menuItems[_key].cls)
                             { //channel has cls, apply it to the channel
