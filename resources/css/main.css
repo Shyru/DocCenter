@@ -106,6 +106,14 @@ html,body {
     background-image:url("../images/ruby_hover.png");
 }
 
+#sidebar .resource span.php {
+    background-image:url("../images/php_normal.png");
+}
+#sidebar .resource:hover span.php {
+    background-image:url("../images/php_hover.png");
+}
+
+
 
 /* Channel overlay */
 #sidebar .resource div
